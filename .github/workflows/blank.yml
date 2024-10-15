@@ -1,36 +1,85 @@
-# This is a basic workflow to help you get started with Actions
+name: CI Workflow
 
-name: CI
-
-# Controls when the workflow will run
 on:
-  # Triggers the workflow on push or pull request events but only for the "main" branch
   push:
-    branches: [ "main" ]
+    branches: [ main, master, dev ]
   pull_request:
-    branches: [ "main" ]
+    branches: [ main, master, dev ]
 
-  # Allows you to run this workflow manually from the Actions tab
-  workflow_dispatch:
-
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
   build:
-    # The type of runner that the job will run on
+    timeout-minutes: 60
     runs-on: ubuntu-latest
 
-    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v4
+      - name: Checkout Parent Repository
+        uses: actions/checkout@v4
 
-      # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: echo Hello, world!
+      - name: Checkout Next.js Repository
+        uses: actions/checkout@v4
+        with:
+          repository: Latitude-OpenDATA-SIO-Saintbe/nextjs-repo  # Replace with your organization name and repo
+          path: nextjs
+          token: ${{ secrets.ORG_PAT }}  # Use the secret for PAT
 
-      # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
+      - name: Checkout Laravel Repository
+        uses: actions/checkout@v4
+        with:
+          repository: Latitude-OpenDATA-SIO-Saintbe/laravel-repo  # Replace with your organization name and repo
+          path: laravel
+          token: ${{ secrets.ORG_PAT }}  # Use the secret for PAT
+
+      - name: Checkout .NET Repository
+        uses: actions/checkout@v4
+        with:
+          repository: Latitude-OpenDATA-SIO-Saintbe/dotnet-repo  # Replace with your organization name and repo
+          path: dotnet
+          token: ${{ secrets.ORG_PAT }}  # Use the secret for PAT
+
+      - name: Setup Node.js for Next.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 'lts/*'
+
+      - name: Install Next.js Dependencies
         run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
+          cd nextjs
+          npm ci
+
+      - name: Install Playwright Browsers
+        run: |
+          cd nextjs
+          npx playwright install --with-deps
+
+      - name: Build and Run Docker Compose
+        run: |
+          cd laravel
+          docker-compose up -d
+          sleep 10  # Adjust this time if necessary
+
+      - name: Run Playwright Tests
+        run: |
+          cd nextjs
+          npx playwright test
+
+      - name: Run Jest Tests
+        run: |
+          cd nextjs
+          npm run test
+
+      - name: Run Laravel Tests (if applicable)
+        run: |
+          cd laravel
+          php artisan test  # Adjust this command according to your Laravel testing setup
+
+      - name: Stop Docker Compose
+        run: |
+          cd laravel
+          docker-compose down
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: playwright-report
+          path: nextjs/playwright-report/
+          retention-days: 30
