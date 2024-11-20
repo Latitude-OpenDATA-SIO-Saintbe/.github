@@ -15,7 +15,7 @@ Active Repositories
 
 🐞 Issue Tracking
 Open Issues by Repository
-<!-- REPO STATS START -->
+<!-- ISSUE STATS START -->
 | Repository | Open Issues | Severity (High/Medium/Low) | Last Updated |
 |------------|-------------|----------------------------|--------------|
 <!-- ISSUE STATS END -->
@@ -24,10 +24,10 @@ Open Issues by Repository
 
 ⚙️ Action Results
 Latest GitHub Actions Workflows
-<!-- REPO STATS START -->
+<!-- START -->
 | Workflow Name | Status | Run ID | Duration | Last Run Date |
 |------------|-------------|----------------------------|--------------|---|
-<!-- ISSUE STATS END -->
+<!-- END -->
 Workflow Name	Status	Run ID	Duration	Last Run Date
 CI/CD Pipeline	✅ Success	12345	2m 30s	2024-11-20
 Build & Test	❌ Failed	12346	3m 12s	2024-11-20
@@ -37,10 +37,10 @@ Deploy to Staging	✅ Success	12347	5m 40s	2024-11-19
 
 📅 Recent Activity
 Latest Commit Activity
-<!-- REPO STATS START -->
+<!-- START -->
 | Repository | Last Commit Author | Date | Message | 
 |------------|-------------|----------------------------|--------------|
-<!-- ISSUE STATS END -->
+<!-- END -->
 Repository	Last Commit Author	Date	Message
 repo-1	john_doe	2024-11-20	"Fixed bug in user authentication flow."
 repo-2	alice_smith	2024-11-19	"Added new feature to improve search."
