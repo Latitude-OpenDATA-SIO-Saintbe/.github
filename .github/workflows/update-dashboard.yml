@@ -35,7 +35,13 @@ jobs:
       run: |
         git config --global user.name "github-actions"
         git config --global user.email "github-actions@github.com"
+        
+        # Stage only README.md file to commit
         git add README.md
-        git commit -m "Updated repository stats and issues"
+        
+        # Commit only if there are changes
+        git diff --cached --quiet || git commit -m "Updated repository stats and issues"
+        
+        # Push changes
         git push
 
