@@ -2,8 +2,8 @@ name: Update Dashboard
 
 on:
   schedule:
-    - cron: "0 0 * * *"  # Run daily at midnight UTC
-  workflow_dispatch:  # Allow manual trigger
+    - cron: "0 0 * * *"  # Runs every day at midnight UTC
+  workflow_dispatch:  # Allows you to manually trigger the workflow via the GitHub Actions UI
     inputs:
       update_dashboard:
         description: 'Update the dashboard'
@@ -13,6 +13,9 @@ on:
 jobs:
   update-dashboard:
     runs-on: ubuntu-latest
+
+    permissions:
+      contents: write  # Ensure write access to repository contents
 
     steps:
     - name: Checkout the repository
@@ -29,14 +32,14 @@ jobs:
 
     - name: Fetch Repository Stats and Issues
       run: |
-        node fetchStats.js
+        node fetchStats.js  # Your custom script to update the README
 
     - name: Commit and push changes to the README
       run: |
         git config --global user.name "github-actions"
         git config --global user.email "github-actions@github.com"
         
-        # Stage only README.md file to commit
+        # Stage only README.md
         git add README.md
         
         # Commit only if there are changes
@@ -44,4 +47,3 @@ jobs:
         
         # Push changes
         git push
-
