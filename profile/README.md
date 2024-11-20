@@ -6,26 +6,28 @@ Welcome to the dashboard for our GitHub Organization! This page provides key ins
 This GitHub organization houses multiple repositories, each contributing to various projects. Below, you'll find insights into our active repositories, ongoing issues, and results from the latest GitHub Actions workflows.
 📊 Repository Stats
 Active Repositories
-Repository Name	Stars	Forks	Issues	Pull Requests
-repo-1	120	15	5	3
-repo-2	80	10	12	4
-repo-3	45	8	2	1
-repo-4	102	20	8	6
+<!-- REPO STATS START -->
+| Repository Name       | Stars | Forks | Issues | Pull Requests |
+|-----------------------|-------|-------|--------|---------------|
+<!-- ISSUE STATS END -->
 
     Note: Repository statistics are updated periodically. These stats include the number of stars, forks, open issues, and open pull requests.
 
 🐞 Issue Tracking
 Open Issues by Repository
-Repository	Open Issues	Severity (High/Medium/Low)	Last Updated
-repo-1	5	High	2024-11-20
-repo-2	12	Medium	2024-11-19
-repo-3	2	Low	2024-11-18
-repo-4	8	High	2024-11-20
+<!-- REPO STATS START -->
+| Repository | Open Issues | Severity (High/Medium/Low) | Last Updated |
+|------------|-------------|----------------------------|--------------|
+<!-- ISSUE STATS END -->
 
     Pro Tip: Keep track of open issues and their severity to prioritize fixes and improvements.
 
 ⚙️ Action Results
 Latest GitHub Actions Workflows
+<!-- REPO STATS START -->
+| Workflow Name | Status | Run ID | Duration | Last Run Date |
+|------------|-------------|----------------------------|--------------|---|
+<!-- ISSUE STATS END -->
 Workflow Name	Status	Run ID	Duration	Last Run Date
 CI/CD Pipeline	✅ Success	12345	2m 30s	2024-11-20
 Build & Test	❌ Failed	12346	3m 12s	2024-11-20
@@ -35,6 +37,10 @@ Deploy to Staging	✅ Success	12347	5m 40s	2024-11-19
 
 📅 Recent Activity
 Latest Commit Activity
+<!-- REPO STATS START -->
+| Repository | Last Commit Author | Date | Message | 
+|------------|-------------|----------------------------|--------------|
+<!-- ISSUE STATS END -->
 Repository	Last Commit Author	Date	Message
 repo-1	john_doe	2024-11-20	"Fixed bug in user authentication flow."
 repo-2	alice_smith	2024-11-19	"Added new feature to improve search."
