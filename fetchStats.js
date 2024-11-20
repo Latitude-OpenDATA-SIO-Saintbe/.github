@@ -2,7 +2,7 @@ const axios = require('axios');
 const fs = require('fs');
 
 // GitHub API credentials
-const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
+const GITHUB_TOKEN = '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';
 const ORG_NAME = 'Latitude-OpenDATA-SIO-Saintbe';
 
 // GitHub API URLs
