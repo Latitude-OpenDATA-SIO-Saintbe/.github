@@ -7,13 +7,14 @@ const ORG_NAME = 'Latitude-OpenDATA-SIO-Saintbe';
 
 // GitHub API URLs
 const REPOS_API = `https://api.github.com/orgs/${ORG_NAME}/repos`;
-const ISSUES_API = `https://api.github.com/orgs/${ORG_NAME}/issues`;
+const ISSUES_API = `https://api.github.com/repos/${ORG_NAME}/setup/issues`;
 
 // Function to fetch repositories' stats
 async function fetchRepoStats() {
     const reposResponse = await axios.get(REPOS_API, {
         headers: {
-            Authorization: `token ${GITHUB_TOKEN}`
+            Authorization: `Bearer ${GITHUB_TOKEN}`
+            'X-GitHub-Api-Version': '2022-11-28'
         }
     });
     return reposResponse.data;
@@ -24,6 +25,7 @@ async function fetchOpenIssues() {
     const issuesResponse = await axios.get(ISSUES_API, {
         headers: {
             Authorization: `token ${GITHUB_TOKEN}`
+            'X-GitHub-Api-Version': '2022-11-28'
         },
         params: {
             state: 'open',
