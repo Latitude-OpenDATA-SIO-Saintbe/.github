@@ -14,7 +14,6 @@ async function fetchRepoStats() {
     const reposResponse = await axios.get(REPOS_API, {
         headers: {
             Authorization: `Bearer ${GITHUB_TOKEN}`
-            'X-GitHub-Api-Version': '2022-11-28'
         }
     });
     return reposResponse.data;
@@ -24,8 +23,7 @@ async function fetchRepoStats() {
 async function fetchOpenIssues() {
     const issuesResponse = await axios.get(ISSUES_API, {
         headers: {
-            Authorization: `token ${GITHUB_TOKEN}`
-            'X-GitHub-Api-Version': '2022-11-28'
+            Authorization: `Bearer ${GITHUB_TOKEN}`
         },
         params: {
             state: 'open',
