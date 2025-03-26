@@ -23,11 +23,22 @@ def get_issues(state='all'):
 # Function to generate a bug count graph
 def generate_bug_graph(issues):
     bug_issues = [issue for issue in issues if 'bug' in [label['name'] for label in issue['labels']]]
+    
+    if not bug_issues:  # No issues with the 'bug' label
+        print("No bug issues found.")
+        return  # Exit the function early if no bug issues are found
+    
     open_bugs = len([issue for issue in bug_issues if issue['state'] == 'open'])
     closed_bugs = len([issue for issue in bug_issues if issue['state'] == 'closed'])
 
     labels = ['Open Bugs', 'Closed Bugs']
     sizes = [open_bugs, closed_bugs]
+    
+    # Avoid empty sizes list
+    if sum(sizes) == 0:
+        print("No open or closed bugs to display.")
+        return
+    
     colors = ['lightcoral', 'lightskyblue']
     explode = (0.1, 0)
 
@@ -37,6 +48,7 @@ def generate_bug_graph(issues):
     plt.title('Bug Status')
     plt.savefig('bug_status.png')
     plt.close()
+
 
 # Function to generate workload graph
 def generate_workload_graph(issues):
